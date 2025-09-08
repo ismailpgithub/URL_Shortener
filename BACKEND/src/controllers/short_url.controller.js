@@ -7,7 +7,6 @@ import wrapAsync from "../utils/tryCatchWrapper.js";
 
 export const short_urlController = wrapAsync(async (req, res, next) => {
   const data = req.body;
-  console.log(data);
 
   let shortUrl;
   if (req.user) {

@@ -15,7 +15,7 @@ connectDB();
 const app = express();
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: process.env.VITE_API_URL,
     credentials: true,
   })
 );
@@ -33,6 +33,7 @@ app.get("/:id", redirectFromShortUrl);
 
 app.use(errorHandler);
 
-app.listen(3000, () => {
-  console.log("server is running on port 3000");
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
