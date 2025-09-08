@@ -25,6 +25,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 app.use(attachUser);
 
+console.log("inside the app.js");
+
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/create", shortUrlRouter);
