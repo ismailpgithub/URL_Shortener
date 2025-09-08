@@ -4,6 +4,8 @@ import { verifyToken } from "./helper.js";
 export const attachUser = async (req, res, next) => {
   console.log("inside the attachUser.js");
 
+  console.log("All Cookies from request:", req.cookies);
+
   const token = req.cookies.accessToken;
   console.log("In attachuser.js - Token extracted: ", token);
   if (!token) return next();

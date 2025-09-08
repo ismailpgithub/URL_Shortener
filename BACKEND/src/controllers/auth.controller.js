@@ -19,6 +19,7 @@ export const login_user = wrapAsync(async (req, res, next) => {
   console.log("token after login", token);
   req.user = user;
   console.log("user after login", user);
+  console.log("Cookie options before setting cookie:", cookieOptions);
   res.cookie("accessToken", token, cookieOptions);
   res.status(200).json({ user: user, message: "User logged in successfully" });
 });
