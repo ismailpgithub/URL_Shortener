@@ -19,8 +19,14 @@ const Url_form = () => {
           setShortUrl(data);
           queryClient.invalidateQueries({queryKey: ['userUrls']})
           setError(null)
+          setTimeout(() => {
+            setShortUrl(null);
+          }, 5000);
         } catch (error) {
           setError(error.message)
+          setTimeout(() => {
+            setError(null);
+          }, 2000);
         }
     }
 

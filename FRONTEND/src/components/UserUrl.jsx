@@ -50,7 +50,7 @@ const UserUrl = () => {
     <div className="bg-white rounded-lg mt-5 p-8 shadow-md overflow-hidden">
       <div className="overflow-x-auto h-56">
         <table className="min-w-full divide-y divide-gray-200">
-          <thead className="bg-gray-50">
+          <thead className="bg-gray-50 sticky top-0 z-10">
             <tr className="h-16">
               <th className="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Original URL</th>
               <th className="px-6 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Short URL</th>
@@ -69,12 +69,12 @@ const UserUrl = () => {
                 <td className="px-6">
                   <div className="text-sm h-full flex items-center leading-none">
                     <a
-                      href={`http://localhost:3000/${url.short_url}`}
+                      href={`${import.meta.env.VITE_API_URL}/${url.short_url}`}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-blue-600 hover:text-blue-900 hover:underline"
                     >
-                      {`localhost:3000/${url.short_url}`}
+                      {`${import.meta.env.VITE_API_URL}/${url.short_url}`}
                     </a>
                   </div>
                 </td>
@@ -88,7 +88,7 @@ const UserUrl = () => {
                 <td className="px-6">
                   <div className="h-full flex items-center">
                     <button
-                      onClick={() => handleCopy(`http://localhost:3000/${url.short_url}`, url._id)}
+                      onClick={() => handleCopy(`${import.meta.env.VITE_API_URL}/${url.short_url}`, url._id)}
                       className={`w-28 h-8 box-border flex items-center justify-center px-2 border border-solid border-transparent text-xs font-medium rounded-2xl whitespace-nowrap shadow-sm transition-colors duration-200 leading-none focus:outline-none focus-visible:outline-none ${
                         copiedId === url._id
                           ? 'bg-green-600 text-white hover:bg-green-700'
