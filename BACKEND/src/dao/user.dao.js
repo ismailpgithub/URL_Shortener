@@ -10,6 +10,8 @@ export const findUserByEmailByPassword = async (email) => {
 };
 
 export const findUserById = async (id) => {
+  console.log("Inside the userDAO - findUserById - id = ", id);
+
   return await User.findById(id);
 };
 

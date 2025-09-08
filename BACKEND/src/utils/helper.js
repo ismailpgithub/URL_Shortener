@@ -12,7 +12,10 @@ export const signToken = (payload) => {
 };
 
 export const verifyToken = (token) => {
-  console.log(process.env.JWT_SECRET);
+  console.log(
+    "in helper.js - verifyToken fun - JWT Secret",
+    process.env.JWT_SECRET
+  );
   const decoded = jsonwebtoken.verify(token, process.env.JWT_SECRET);
   return decoded;
 };

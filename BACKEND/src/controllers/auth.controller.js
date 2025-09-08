@@ -11,10 +11,14 @@ export const register_user = wrapAsync(async (req, res, next) => {
 });
 
 export const login_user = wrapAsync(async (req, res, next) => {
+  console.log("inside the login_user in controller");
   const { email, password } = req.body;
+  console.log("while login providing email and password is ", email, password);
 
   const { token, user } = await loginUser(email, password);
+  console.log("token after login", token);
   req.user = user;
+  console.log("user after login", user);
   res.cookie("accessToken", token, cookieOptions);
   res.status(200).json({ user: user, message: "User logged in successfully" });
 });
