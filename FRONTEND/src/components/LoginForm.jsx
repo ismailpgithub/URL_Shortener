@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loginUser } from '../api/user.api';
+import { getCurrentUser, loginUser } from '../api/user.api';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/slice/authSlice.js';
 import { useNavigate } from '@tanstack/react-router';
@@ -18,7 +18,8 @@ const LoginForm = ({state}) => {
     setError('');
 
     try {
-      const data = await loginUser(email, password);
+      await loginUser(email, password);
+      const data = await getCurrentUser();
       dispatch(login(data.user));
       navigate({to:'/dashboard'});
       setLoading(false);      
@@ -69,7 +70,7 @@ const LoginForm = ({state}) => {
             type="button"
             disabled={loading}
             onClick={handleSubmit}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
           >
             {loading ? 'Logging in...' : 'Login'}
           </button>
@@ -83,7 +84,7 @@ const LoginForm = ({state}) => {
         
         <p className="mt-6 text-center text-sm text-gray-600">
           Don't have an account? 
-          <span onClick={() => state(false)}  className="text-blue-600 hover:text-blue-500 ml-1 hover:cursor-pointer">
+          <span onClick={() => state(false)}  className="text-blue-600 hover:text-blue-500 ml-1 cursor-pointer">
             Sign up
           </span>
         </p>
