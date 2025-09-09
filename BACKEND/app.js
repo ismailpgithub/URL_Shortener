@@ -15,10 +15,7 @@ connectDB();
 const app = express();
 app.use(
   cors({
-    origin: [
-      "http://localhost:5173", // local frontend
-      "https://url-shortener-ir58.onrender.com", // backend domain
-    ],
+    origin: process.env.VITE_API_URL,
     credentials: true,
   })
 );
