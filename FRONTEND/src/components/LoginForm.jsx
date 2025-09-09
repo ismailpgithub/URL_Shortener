@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getCurrentUser, loginUser } from '../api/user.api';
+import { loginUser } from '../api/user.api';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/slice/authSlice.js';
 import { useNavigate } from '@tanstack/react-router';
@@ -18,8 +18,8 @@ const LoginForm = ({state}) => {
     setError('');
 
     try {
-      await loginUser(email, password);
-      const data = await getCurrentUser();
+      const data = await loginUser(email, password);
+      console.log('Login response user:', data.user); 
       dispatch(login(data.user));
       navigate({to:'/dashboard'});
       setLoading(false);      
