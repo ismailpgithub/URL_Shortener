@@ -5,14 +5,14 @@ import { redirect } from "@tanstack/react-router";
 export const checkAuth = async ({ context }) => {
   try {
     const { queryClient, store } = context;
-    const data = await queryClient.ensureQueryData({
+    const data = await queryClient.fetchQuery({
       queryKey: ["currentUser"],
       queryFn: getCurrentUser,
     });
 
-    console.log(data.user);
-    if (!data.user) return false;
-    store.dispatch(login(data.user));
+    console.log(data);
+    if (!data) return false;
+    store.dispatch(login(data));
     const { isAuthenticated } = store.getState().auth;
     if (!isAuthenticated) return false;
     return true;
