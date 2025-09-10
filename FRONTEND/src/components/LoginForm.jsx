@@ -19,7 +19,6 @@ const LoginForm = ({state}) => {
 
     try {
       const data = await loginUser(email, password);
-      console.log('Login response user:', data.user); 
       dispatch(login(data.user));
       navigate({to:'/dashboard'});
       setLoading(false);      

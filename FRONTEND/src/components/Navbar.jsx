@@ -6,6 +6,8 @@ import { logout } from '../store/slice/authSlice';
 
 const Navbar = () => {
   const { isAuthenticated, user } = useSelector((state) => state.auth);
+  console.log("Logged user:", user);
+  console.log("is Authenticated", isAuthenticated);
   const routerState = useRouterState();
   const currentPath = routerState.location.pathname;
   const navigate = useNavigate();
@@ -13,9 +15,7 @@ const Navbar = () => {
 
   const handleLogout = async () => {
     try {
-      const data = await logoutUser();
-      // console.log(data);
-      
+      const data = await logoutUser();      
       dispatch(logout());
 
       navigate({ to: '/auth' });
