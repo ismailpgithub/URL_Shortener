@@ -24,6 +24,7 @@ export const logoutUser = async () => {
 
 export const getCurrentUser = async () => {
   const { data } = await axiosInstance.get("/api/auth/me");
+  console.log("in getCurrentUser", data);
   return data;
 };
 
