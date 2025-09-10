@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { loginUser } from '../api/user.api';
+import { getCurrentUser, loginUser } from '../api/user.api';
 import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../store/slice/authSlice.js';
 import { useNavigate } from '@tanstack/react-router';
@@ -18,10 +18,12 @@ const LoginForm = ({state}) => {
     setError('');
 
     try {
-      const data = await loginUser(email, password);
-      dispatch(login(data.user));
-      navigate({to:'/dashboard'});
-      setLoading(false);      
+      await loginUser(email, password);               // Sets cookie
+      const data = await getCurrentUser();          // Gets fresh user from backend
+      console.log('Fresh user:', data.user);       // Should print correct latest user
+      dispatch(login(data.user));                  // Dispatch correct fresh user
+      navigate({ to: '/dashboard' });
+      setLoading(false);     
 
     } catch (err) {
       setLoading(false);

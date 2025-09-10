@@ -47,8 +47,8 @@ const Navbar = () => {
                 alt="user image"
               />
               <div className="absolute left-1/2 -translate-x-1/2 mt-2 w-48 p-3 bg-white border border-gray-200 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity z-10 text-sm text-gray-800">
-                <div className="font-semibold">{user.user?.name || "Username"}</div>
-                <div className="text-gray-500">{user.user?.email || "user@email.com"}</div>
+                <div className="font-semibold">{user?.name || "Username"}</div>
+                <div className="text-gray-500">{user?.email || "user@email.com"}</div>
                 <div className="mt-3">
                   <button 
                     onClick={handleLogout}
